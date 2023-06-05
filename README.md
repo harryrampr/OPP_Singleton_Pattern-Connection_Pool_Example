@@ -5,7 +5,10 @@ the [Singleton Pattern](https://en.wikipedia.org/wiki/Singleton_pattern). You wi
 versions of PHP, supporting Classes and Abstract Classes, make it easy to implement the Singleton Pattern using this
 language.
 
-### About It
+You can find the PHP 8.1 code at `/app/src`, there is testing at `/tests` directory. HTML output with Tailwind CSS can
+be found at `/app/public` directory.
+
+### About the Pattern
 
 The Singleton pattern is a creational design pattern
 in [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming) that ensures a class has
