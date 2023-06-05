@@ -5,8 +5,12 @@ the [Singleton Pattern](https://en.wikipedia.org/wiki/Singleton_pattern). You wi
 versions of PHP, supporting Classes and Abstract Classes, make it easy to implement the Singleton Pattern using this
 language.
 
-You can find the PHP 8.1 code at `/app/src`, there is testing at `/tests` directory. HTML output with Tailwind CSS can
-be found at `/app/public` directory.
+You can find the PHP 8.1 code
+at [/app/src](https://github.com/harryrampr/OPP_Singleton_Pattern-Connection_Pool_Example/tree/master/app/src), there is
+testing at [/tests](https://github.com/harryrampr/OPP_Singleton_Pattern-Connection_Pool_Example/tree/master/app/tests)
+directory. HTML output with Tailwind CSS can be found
+at [/app/public](https://github.com/harryrampr/OPP_Singleton_Pattern-Connection_Pool_Example/tree/master/app/public)
+directory.
 
 ### About the Pattern
 
