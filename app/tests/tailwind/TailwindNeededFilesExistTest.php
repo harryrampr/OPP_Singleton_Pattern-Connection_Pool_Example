@@ -6,11 +6,11 @@ namespace Tests\tailwind;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class TestContainerNeededFilesExist
+ * Class TailwindNeededFilesExistTest
  *
  * Test case to verify the existence of necessary folders and files to use Tailwind.
  */
-class TestTailwindNeededFilesExist extends TestCase
+class TailwindNeededFilesExistTest extends TestCase
 {
     /**
      * Test if the tailwind.config.js file exists at the root of the project.
