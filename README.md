@@ -1,79 +1,101 @@
-## Project Templates for PHP Development
+## Singleton Pattern (OOP) - Example
 
-### When coding with PHP, it's important to have a good IDE and project templates with the tools you use all the time.
+We are sharing some simple PHP code, showing the use of
+the [Singleton Pattern](https://en.wikipedia.org/wiki/Singleton_pattern). You will see how modern
+versions of PHP, supporting Classes and Abstract Classes, make it easy to implement the Singleton Pattern using this
+language.
 
-[PhpStorm](https://www.jetbrains.com/phpstorm/) is the best IDE I have ever used. Worth every penny since it helps to
-improve your coding quality, saving a lot
-of time during development, testing and maintenance. If you aren't using PhpStorm, we encourage you to test it [free for
-30 days](https://www.jetbrains.com/phpstorm/download/#section=windows).
+### About It
 
-We have curated a project template for PHP 8.1.x development. You don't need PhpStorm to use our template, just remove
-the`.idea`folder containing PhpStorm configuration.
+The Singleton pattern is a creational design pattern
+in [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming) that ensures a class has
+only one instance and provides a global point of access to that instance. It involves restricting the instantiation of a
+class to a single object, typically shared across the entire application.
 
-#### Template Features:
+### History
 
-- PhpStorm initial project setup
-- Project's basic file structure
-- Composer Package Manager (latest)
-- File autoload (using composer)
-- Xdebug 3.x
-- phpUnit 9.x
-- MySQL (latest)
-- [Docker Containers](https://www.docker.com/products/docker-desktop/) LAMP for code testing
-- Support for initial database dump
-- Persistent data on database container
-- Support for Unit Testing with Coverage Report
-- Support for NPM Package Manager
-- Tailwind 3 CSS
+The Singleton pattern was first introduced by the Gang of Four (GoF) in their book ["Design Patterns: Elements of
+Reusable Object-Oriented Software"](https://en.wikipedia.org/wiki/Design_Patterns), published in 1994. The book,
+authored by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, cataloged various design patterns commonly
+used in object-oriented programming.
 
-#### Installation:
+The concept of the Singleton pattern predates its formal description in the GoF book. It can be traced back to the early
+days of software development, where the need to ensure a single instance of a class arose in different contexts.
 
-1. Download or clone template from repository. To remove git's history from the template, run from Terminal or
-   Git Bash the following commands:
-   - `rm -rf .git`
-   - `git init`
-   - `cp sample.env .env`
-   - `cp sample.app.env app.env`
-   - `git add -A`
-   - `git commit -m "Initial commit"`
+The Singleton pattern gained popularity as a solution to problems requiring a global point of access to a unique
+resource or functionality. It provides a way to control the instantiation of a class, ensuring that only one instance
+exists throughout the application.
 
-2. Open project with PhpStorm and go to Settings->PHP, select the`Default PHP Interpreter`. Also, setup`Composer`execs
-   location.
+### Intent
 
-3. Update necessary info at`composer.json`file, then run`composer install`.
+The intent of the Singleton pattern is to control object creation, limit the number of instances to one, and provide a
+centralized point of access to that single instance. It ensures that a class has only one instance throughout the
+application and facilitates the coordination and sharing of this instance among different components.
 
-4. To configure the Docker LAMP, just update `Environmental Variables` values at following files:
+### Structure
 
-    1. For`.env`file, most defaults should work. If necessary replace values of:
-        - `SERVER_HTTP_HOST_PORT`
-        - `SERVER_HTTPS_HOST_PORT`
-        - `DB_CONTAINER_HOST_PORT`
-        - `DB_ROOT_PASSWORD`
-        - `DB_CONTAINER_VOLUME_NAME`(Must update)
-        - `DB_CONTAINER_VOLUME_EXTERNAL`
+The Singleton pattern consists of the Singleton component, which represents the class designed to have a single
+instance. The Singleton typically provides a static method to access the instance, ensuring that only one instance of
+the class exists. This component may also contain additional methods and properties specific to the singleton object.
 
-    2. For`app.env`file, most defaults should work. If necessary replace values of:
-        - `DATABASE_HOST`(Must update)
-        - `DATABASE_PORT`
-        - `DATABASE_USER_NAME`
-        - `DATABASE_USER_PASSWORD`
-        - `DATABASE_DB_NAME`
+### How it Works
 
-   ***Note:** On Windows, use host machine's [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) IP for
-   DATABASE_HOST and copy value of DB_CONTAINER_HOST_PORT to DATABASE_PORT. These changes will allow using Docker LAMP
-   for
-   code testing, also allows using host machine's PHP and PhpStorm Build-in Preview without any configuration problems.*
-5. Run `npm install` for the `node_modules` directory to be created at project root.
-6. Run all PHPUnit tests located at`app/tests`folder to verify template setup & containers configuration.
+1. The Singleton class defines a private constructor to prevent direct instantiation of the class from outside.
+2. It provides a static method, often named getInstance(), which is responsible for creating the instance of the class (
+   if it doesn't exist) and returning it.
+3. The first time getInstance() is called, it creates a new instance of the class and stores it in a static variable
+   within the class.
+4. On subsequent calls to getInstance(), the method returns the already existing instance stored in the static variable.
+5. The singleton instance can then be accessed and used by other parts of the application through the getInstance()
+   method.
 
-7. Add any necessary SQL dumps to the db_dumps folder, they will be imported during the building stage of database
-   container.
+### Benefits
 
-8. To start the LAMP containers, run these commands at IDE's Terminal:
+- Provides a single, global point of access to an object instance, ensuring that there is only one instance throughout
+  the application.
+- Guarantees the uniqueness of the object, preventing multiple instances from being created.
+- Facilitates the sharing of the singleton instance among different parts of the application, promoting consistency and
+  centralized access to resources.
+- Enables lazy initialization, where the instance is created only when it is first needed, improving performance and
+  memory usage.
+- Simplifies the management of shared resources and settings that should have a single point of control.
+- Supports the concept of a "global state" or "global configuration" by encapsulating it within a singleton object.
 
-    - `docker compose build`
-    - `docker compose up -d`
+### Applications
 
-9. When necessary, run`docker compose down`to stop the containers.
-10. To update Tailwind changes,
-    run`npx tailwindcss -i ./app/src/css/tailwind_input.css -o ./app/public/css/main.css --watch`at IDE's Terminal.
+- **Logging:** The Singleton pattern is often used in logging systems to ensure that there is a single, centralized
+  logger instance shared by different components in an application. This allows consistent logging behavior and provides
+  a global access point for logging functionality.
+
+- **Configuration Settings:** Singleton can be used to manage global configuration settings. The instance of the
+  Singleton class can hold the configuration values, and these values can be accessed and modified from various parts of
+  the application.
+
+- **Database Connection Pool:** In applications that require database connectivity, the Singleton pattern can be used to
+  create and manage a connection pool. The Singleton instance holds the pool of database connections, allowing multiple
+  parts of the application to reuse connections efficiently.
+
+- **Caching:** Singleton can be used in caching systems to store and retrieve frequently accessed data. The Singleton
+  instance manages the cache, ensuring that all parts of the application access the same cache object.
+
+- **Thread Pool:** Singleton can be employed to create and manage a thread pool in multithreaded applications. The
+  Singleton instance would maintain a pool of threads that can be used for executing concurrent tasks.
+
+- **GUI Components:** Singleton can be used to represent GUI components that need to be accessed from different parts of
+  an application. For example, a window manager or a dialog box manager can be implemented as a Singleton to handle the
+  creation and management of GUI components.
+
+- **Print Spooler:** In printing systems, a Singleton can be used to implement a print spooler that manages the printing
+  queue and coordinates the printing tasks across the application.
+
+- **File Manager:** Singleton can be employed to implement a file manager that provides a centralized point of access
+  for file operations and handles file-related tasks such as reading, writing, and managing file resources.
+
+### Other Examples
+
+A logging system in a software application is a classic example of the Singleton pattern. The Singleton class, such as
+the Logger class, ensures that there is only one instance of the logger throughout the application. It has a private
+constructor to prevent direct instantiation and a static method, like getInstance(), to provide access to the logger
+instance. Other parts of the application can access the logger using Logger.getInstance(), which returns the existing
+logger instance or creates a new one if it doesn't exist. This approach allows all components to share the same logger
+instance, enabling consistent logging to a single log file or output stream.
